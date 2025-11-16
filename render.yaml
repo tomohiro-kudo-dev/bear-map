@@ -3,6 +3,7 @@ services:
     name: bear-map
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
-    pythonVersion: "3.10.13"
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    pythonVersion: 3.10
+
