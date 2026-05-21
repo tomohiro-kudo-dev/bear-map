@@ -177,10 +177,10 @@ input:checked+.slider::before{transform:translateX(14px)}
   </div>
   <div class="header-divider"></div>
   <div class="header-stats">
-    <div class="hstat"><div class="hstat-val" id="hs-total">–</div><div class="hstat-lbl">総件数</div></div>
-    <div class="hstat"><div class="hstat-val" id="hs-showing" style="color:var(--green)">–</div><div class="hstat-lbl">表示中</div></div>
-    <div class="hstat"><div class="hstat-val" id="hs-day" style="color:var(--yellow)">–</div><div class="hstat-lbl">昼</div></div>
-    <div class="hstat"><div class="hstat-val" id="hs-night" style="color:var(--blue)">–</div><div class="hstat-lbl">夜</div></div>
+    <div class="hstat"><div class="hstat-val" id="hs-total">–</div><div class="hstat-lbl" data-i18n="total">総件数</div></div>
+    <div class="hstat"><div class="hstat-val" id="hs-showing" style="color:var(--green)">–</div><div class="hstat-lbl" data-i18n="showing">表示中</div></div>
+    <div class="hstat"><div class="hstat-val" id="hs-day" style="color:var(--yellow)">–</div><div class="hstat-lbl" data-i18n="daytime">昼</div></div>
+    <div class="hstat"><div class="hstat-val" id="hs-night" style="color:var(--blue)">–</div><div class="hstat-lbl" data-i18n="nighttime">夜</div></div>
   </div>
   <div class="header-actions">
     <button class="btn" id="lang-ja" onclick="setLang('ja')">日本語</button>
@@ -198,10 +198,10 @@ input:checked+.slider::before{transform:translateX(14px)}
 
   <aside class="panel">
     <div class="panel-tabs">
-      <div class="tab active" onclick="showTab('filter')">🔍 フィルター</div>
-      <div class="tab" onclick="showTab('stats')">📊 統計</div>
-      <div class="tab" onclick="showTab('list')">📋 一覧</div>
-      <div class="tab" onclick="showTab('about')">ℹ️ 情報</div>
+      <div class="tab active" onclick="showTab('filter')" data-i18n="tab_filter">🔍 フィルター</div>
+      <div class="tab" onclick="showTab('stats')" data-i18n="tab_stats">📊 統計</div>
+      <div class="tab" onclick="showTab('list')" data-i18n="tab_list">📋 一覧</div>
+      <div class="tab" onclick="showTab('about')" data-i18n="tab_about">ℹ️ 情報</div>
     </div>
 
     <!-- FILTER TAB -->
@@ -224,20 +224,20 @@ input:checked+.slider::before{transform:translateX(14px)}
       <div class="filter-group">
         <div class="filter-label">時間帯</div>
         <div class="filter-chips" id="chips-time">
-          <div class="chip on" data-time="day" onclick="toggleChip(this,'time')"><span class="chip-dot" style="background:#f0c050"></span>昼 (5–18時)</div>
-          <div class="chip on" data-time="night" onclick="toggleChip(this,'time')"><span class="chip-dot" style="background:#5ab4e8"></span>夜 (18–5時)</div>
-          <div class="chip on" data-time="unknown" onclick="toggleChip(this,'time')"><span class="chip-dot" style="background:#7a8898"></span>不明</div>
+          <div class="chip on" data-time="day" onclick="toggleChip(this,'time')"><span class="chip-dot" style="background:#f0c050"></span><span>昼 (5–18時)</span></div>
+          <div class="chip on" data-time="night" onclick="toggleChip(this,'time')"><span class="chip-dot" style="background:#5ab4e8"></span><span>夜 (18–5時)</span></div>
+          <div class="chip on" data-time="unknown" onclick="toggleChip(this,'time')"><span class="chip-dot" style="background:#7a8898"></span><span>不明</span></div>
         </div>
       </div>
 
       <div class="filter-group">
         <div class="filter-label">種別</div>
         <div class="filter-chips" id="chips-cat">
-          <div class="chip on" data-cat="sighted" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#e8643c"></span>目撃</div>
-          <div class="chip on" data-cat="family" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#f0a050"></span>複数・親子</div>
-          <div class="chip on" data-cat="trace" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#5ab4e8"></span>痕跡</div>
-          <div class="chip on" data-cat="exterminated" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#e84c4c"></span>駆除</div>
-          <div class="chip on" data-cat="injured" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#c83cc8"></span>負傷</div>
+          <div class="chip on" data-cat="sighted" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#e8643c"></span><span>目撃</span></div>
+          <div class="chip on" data-cat="family" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#f0a050"></span><span>複数・親子</span></div>
+          <div class="chip on" data-cat="trace" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#5ab4e8"></span><span>痕跡</span></div>
+          <div class="chip on" data-cat="exterminated" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#e84c4c"></span><span>駆除</span></div>
+          <div class="chip on" data-cat="injured" onclick="toggleChip(this,'cat')"><span class="chip-dot" style="background:#c83cc8"></span><span>負傷</span></div>
         </div>
       </div>
 
@@ -327,7 +327,8 @@ function getTimeSlot(t){
   return(h>=5&&h<18)?'day':'night';
 }
 function catLabel(c){
-  return{sighted:'目撃',family:'複数・親子',trace:'痕跡',exterminated:'駆除',injured:'負傷'}[c]||c;
+  const map={sighted:'cat_sighted',family:'cat_family',trace:'cat_trace',exterminated:'cat_exterm',injured:'cat_injured'};
+  return t(map[c]||'cat_trace');
 }
 function catBadgeClass(c){
   return{sighted:'badge-sighted',family:'badge-family',trace:'badge-trace',exterminated:'badge-exterminated',injured:'badge-injured'}[c]||'badge-trace';
@@ -378,12 +379,11 @@ function buildFilterChips(){
   // months
   const months=[...new Set(RAW_DATA.map(p=>parseMonth(p.date)))].filter(Boolean).sort((a,b)=>a-b);
   const mc=document.getElementById('chips-month');
-  const mNames=['','1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
   months.forEach(m=>{
     const el=document.createElement('div');
     el.className='chip on';
     el.dataset.month=m;
-    el.textContent=mNames[m]||m+'月';
+    el.textContent = I18N[currentLang].month_chip(m);
     el.onclick=()=>toggleChip(el,'month');
     mc.appendChild(el);
     activeMonths.add(m);
@@ -489,7 +489,7 @@ function renderStats(){
   const mCount={};
   filteredData.forEach(p=>{const m=parseMonth(p.date);if(m)mCount[m]=(mCount[m]||0)+1;});
   const maxM=Math.max(...Object.values(mCount),1);
-  const mNames=['','1','2','3','4','5','6','7','8','9','10','11','12'];
+  const mNames = I18N[currentLang].months;
   let mHtml='';
   Object.keys(mCount).sort((a,b)=>a-b).forEach(m=>{
     const pct=(mCount[m]/maxM*100).toFixed(1);
@@ -507,14 +507,15 @@ function renderStats(){
     const pct=(n/maxW*100).toFixed(1);
     wHtml+=`<div class="ward-row"><span>${ward}</span><div class="ward-bar-track"><div class="ward-bar-fill" style="width:${pct}%"></div></div><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">${n}</span></div>`;
   });
-  document.getElementById('ward-rows').innerHTML=wHtml||'<div style="color:var(--muted);font-size:12px">データなし</div>';
+  document.querySelector('#tab-stats .sec-head:first-child') && (document.querySelectorAll('#tab-stats .sec-head')[0].textContent = t('sec_monthly'));
+  document.querySelectorAll('#tab-stats .sec-head')[1] && (document.querySelectorAll('#tab-stats .sec-head')[1].textContent = t('sec_ward'));
 }
 
 function renderList(){
   const listEl=document.getElementById('incident-list');
   const cnt=document.getElementById('list-count');
   const sorted=[...filteredData].sort((a,b)=>b.date.localeCompare(a.date));
-  cnt.textContent=`${sorted.length}件表示`;
+  cnt.textContent = I18N[currentLang].list_count(sorted.length);
   listEl.innerHTML='';
   sorted.slice(0,100).forEach(p=>{
     const el=document.createElement('div');
@@ -543,7 +544,7 @@ function renderList(){
   if(sorted.length>100){
     const more=document.createElement('div');
     more.style.cssText='text-align:center;font-size:11px;color:var(--muted);padding:8px';
-    more.textContent=`他 ${sorted.length-100} 件（フィルターを絞ると全件表示）`;
+    more.textContent = I18N[currentLang].list_more(sorted.length-100);
     listEl.appendChild(more);
   }
 }
@@ -576,14 +577,195 @@ function togglePoints(){
   renderMap();
 }
 
+const I18N = {
+  ja: {
+    // header
+    'title_main':    '札幌ヒグマ出没マップ 2025–26',
+    'title_sub':     'Sapporo Bear Encounter Map 2025–26',
+    'lbl_total':     '総件数',
+    'lbl_showing':   '表示中',
+    'lbl_day':       '昼',
+    'lbl_night':     '夜',
+    // tabs
+    'tab_filter':    '🔍 フィルター',
+    'tab_stats':     '📊 統計',
+    'tab_list':      '📋 一覧',
+    'tab_about':     'ℹ️ 情報',
+    // filter
+    'search_ph':     '場所・状況を検索…',
+    'lbl_ward':      '区',
+    'lbl_month':     '月',
+    'lbl_time':      '時間帯',
+    'lbl_cat':       '種別',
+    'chip_day':      '昼 (5–18時)',
+    'chip_night':    '夜 (18–5時)',
+    'chip_unknown':  '不明',
+    'chip_sighted':  '目撃',
+    'chip_family':   '複数・親子',
+    'chip_trace':    '痕跡',
+    'chip_exterm':   '駆除',
+    'chip_injured':  '負傷',
+    'btn_all':       'すべて選択',
+    'btn_clear':     'クリア',
+    // stats
+    'sec_monthly':   '月別出没件数',
+    'sec_ward':      '区別内訳',
+    // list
+    'list_count':    (n) => `${n}件表示`,
+    'list_more':     (n) => `他 ${n} 件（フィルターを絞ると全件表示）`,
+    // about
+    'about_title':   'このマップについて',
+    'about_body':    '札幌市が公開しているヒグマ出没情報をもとに、出没地点・昼夜・月別・種別のフィルタリングと可視化を行っています。背景地図はESRI衛星画像を使用。',
+    'legend_title':  '凡例',
+    'legend_s':      '目撃（単独）',
+    'legend_f':      '目撃（複数・親子）',
+    'legend_t':      '痕跡・カメラ確認',
+    'legend_e':      '駆除',
+    'legend_i':      '負傷事故',
+    'heat_title':    'ヒートマップ',
+    'heat_body':     '🔥ボタンでON/OFF。青→黄→赤が高密度エリア。📍でポイント表示を切替。',
+    // cat/badge labels
+    'cat_sighted':   '目撃',
+    'cat_family':    '複数・親子',
+    'cat_trace':     '痕跡',
+    'cat_exterm':    '駆除',
+    'cat_injured':   '負傷',
+    // month names
+    'months': ['','1','2','3','4','5','6','7','8','9','10','11','12'],
+    'month_chip': (m) => ['','1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'][m] || m+'月',
+  },
+  en: {
+    'title_main':    'Sapporo Bear Encounter Map 2025–26',
+    'title_sub':     'Sapporo Bear Encounter Map 2025–26',
+    'lbl_total':     'Total',
+    'lbl_showing':   'Showing',
+    'lbl_day':       'Day',
+    'lbl_night':     'Night',
+    'tab_filter':    '🔍 Filter',
+    'tab_stats':     '📊 Stats',
+    'tab_list':      '📋 List',
+    'tab_about':     'ℹ️ Info',
+    'search_ph':     'Search location or status…',
+    'lbl_ward':      'District',
+    'lbl_month':     'Month',
+    'lbl_time':      'Time of Day',
+    'lbl_cat':       'Type',
+    'chip_day':      'Day (5–18h)',
+    'chip_night':    'Night (18–5h)',
+    'chip_unknown':  'Unknown',
+    'chip_sighted':  'Sighted',
+    'chip_family':   'Group / Family',
+    'chip_trace':    'Traces',
+    'chip_exterm':   'Exterminated',
+    'chip_injured':  'Injury',
+    'btn_all':       'Select All',
+    'btn_clear':     'Clear',
+    'sec_monthly':   'Sightings by Month',
+    'sec_ward':      'By District',
+    'list_count':    (n) => `${n} results`,
+    'list_more':     (n) => `${n} more (narrow filters to see all)`,
+    'about_title':   'About This Map',
+    'about_body':    'Visualizes Sapporo City\'s official bear encounter records with filters by district, month, time, and type. Satellite imagery by Esri.',
+    'legend_title':  'Legend',
+    'legend_s':      'Sighted (single)',
+    'legend_f':      'Sighted (group / family)',
+    'legend_t':      'Traces / Camera confirmed',
+    'legend_e':      'Exterminated',
+    'legend_i':      'Injury incident',
+    'heat_title':    'Heatmap',
+    'heat_body':     'Toggle 🔥 on/off. Blue→Yellow→Red = higher density. 📍 toggles point markers.',
+    'cat_sighted':   'Sighted',
+    'cat_family':    'Group/Family',
+    'cat_trace':     'Trace',
+    'cat_exterm':    'Exterminated',
+    'cat_injured':   'Injury',
+    'months': ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    'month_chip': (m) => ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m] || 'M'+m,
+  }
+};
+
+function t(key){ return I18N[currentLang][key] || I18N['ja'][key] || key; }
+
 function setLang(l){
-  currentLang=l;
-  document.getElementById('lang-ja').classList.toggle('active',l==='ja');
-  document.getElementById('lang-en').classList.toggle('active',l==='en');
+  currentLang = l;
+  document.getElementById('lang-ja').classList.toggle('active', l==='ja');
+  document.getElementById('lang-en').classList.toggle('active', l==='en');
+  applyI18N();
+  // フィルターチップ・統計・一覧も再描画（月名など）
+  renderStats();
+  renderList();
+  updateHeaderStats();
+}
+
+function applyI18N(){
+  const d = I18N[currentLang];
+  // header stats labels
+  document.querySelectorAll('.hstat-lbl')[0].textContent = d.lbl_total;
+  document.querySelectorAll('.hstat-lbl')[1].textContent = d.lbl_showing;
+  document.querySelectorAll('.hstat-lbl')[2].textContent = d.lbl_day;
+  document.querySelectorAll('.hstat-lbl')[3].textContent = d.lbl_night;
+  // logo title
+  document.querySelector('.logo-text').innerHTML = d.title_main + '<div class="logo-sub">' + d.title_sub + '</div>';
+  // tabs
+  const tabs = document.querySelectorAll('.tab');
+  tabs[0].textContent = d.tab_filter;
+  tabs[1].textContent = d.tab_stats;
+  tabs[2].textContent = d.tab_list;
+  tabs[3].textContent = d.tab_about;
+  // search placeholder
+  document.getElementById('search-input').placeholder = d.search_ph;
+  // filter labels
+  const flabels = document.querySelectorAll('.filter-label');
+  flabels[0].textContent = d.lbl_ward;
+  flabels[1].textContent = d.lbl_month;
+  flabels[2].textContent = d.lbl_time;
+  flabels[3].textContent = d.lbl_cat;
+  // time chips (span inside)
+  const timeChips = document.querySelectorAll('#chips-time .chip');
+  timeChips[0].querySelector('span:last-child').textContent = d.chip_day;
+  timeChips[1].querySelector('span:last-child').textContent = d.chip_night;
+  timeChips[2].querySelector('span:last-child').textContent = d.chip_unknown;
+  // cat chips
+  const catChips = document.querySelectorAll('#chips-cat .chip');
+  catChips[0].querySelector('span:last-child').textContent = d.chip_sighted;
+  catChips[1].querySelector('span:last-child').textContent = d.chip_family;
+  catChips[2].querySelector('span:last-child').textContent = d.chip_trace;
+  catChips[3].querySelector('span:last-child').textContent = d.chip_exterm;
+  catChips[4].querySelector('span:last-child').textContent = d.chip_injured;
+  // month chips
+  document.querySelectorAll('#chips-month .chip').forEach(el=>{
+    const m = parseInt(el.dataset.month);
+    el.textContent = d.month_chip(m);
+  });
+  // select/clear buttons
+  const filterBtns = document.querySelectorAll('#tab-filter .btn');
+  filterBtns[0].textContent = d.btn_all;
+  filterBtns[1].textContent = d.btn_clear;
+  // stats section headers
+  const secHeads = document.querySelectorAll('#tab-stats .sec-head');
+  secHeads[0].textContent = d.sec_monthly;
+  secHeads[1].textContent = d.sec_ward;
+  // about tab
+  document.querySelector('#tab-about .sec-head').textContent = d.about_title;
+  document.querySelectorAll('#tab-about p')[0].textContent = d.about_body;
+  const aboutSecHeads = document.querySelectorAll('#tab-about .sec-head');
+  if(aboutSecHeads[1]) aboutSecHeads[1].textContent = d.legend_title;
+  // legend items
+  const legItems = document.querySelectorAll('#tab-about .legend-item span:last-child');
+  if(legItems[0]) legItems[0].textContent = d.legend_s;
+  if(legItems[1]) legItems[1].textContent = d.legend_f;
+  if(legItems[2]) legItems[2].textContent = d.legend_t;
+  if(legItems[3]) legItems[3].textContent = d.legend_e;
+  if(legItems[4]) legItems[4].textContent = d.legend_i;
+  const aboutSecHeads2 = document.querySelectorAll('#tab-about .sec-head');
+  if(aboutSecHeads2[2]) aboutSecHeads2[2].textContent = d.heat_title;
+  const aboutPs = document.querySelectorAll('#tab-about p');
+  if(aboutPs[1]) aboutPs[1].textContent = d.heat_body;
 }
 
 // ========== INIT ==========
 buildFilterChips();
+applyI18N();
 applyFilters();
 </script>
 </body>
