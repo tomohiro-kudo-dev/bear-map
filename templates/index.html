@@ -163,6 +163,68 @@ header{height:var(--header-h);min-height:var(--header-h);background:var(--surfac
 .slider::before{content:'';position:absolute;width:14px;height:14px;left:2px;top:2px;background:#fff;border-radius:50%;transition:.2s}
 input:checked+.slider{background:var(--accent)}
 input:checked+.slider::before{transform:translateX(14px)}
+
+@media(max-width:768px){
+  header{
+    padding:0 8px;
+    gap:6px;
+  }
+
+  .logo{
+    flex-shrink:0;
+    min-width:0;
+    max-width:42vw;
+  }
+
+  .logo-bear{
+    font-size:20px;
+    flex-shrink:0;
+  }
+
+  .logo-text{
+    font-size:12px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .logo-sub{
+    display:none;
+  }
+
+  .header-divider{
+    display:none;
+  }
+
+  .header-stats{
+    flex:1;
+    min-width:0;
+    gap:6px;
+    justify-content:flex-end;
+  }
+
+  .hstat-val{
+    font-size:13px;
+  }
+
+  .hstat-lbl{
+    font-size:8px;
+  }
+}
+
+@media(max-width:420px){
+  .logo{
+    max-width:46vw;
+  }
+
+  .logo-text{
+    font-size:11px;
+  }
+
+  .header-stats{
+    gap:4px;
+  }
+}
 </style>
 </head>
 <body>
