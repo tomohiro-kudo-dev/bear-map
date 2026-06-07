@@ -124,6 +124,7 @@ header{
   flex-direction:column;
   overflow:hidden;
   z-index:500;
+  height:100%;
 }
 
 .panel-tabs{
@@ -148,7 +149,7 @@ header{
 .tab:hover:not(.active){color:var(--text)}
 
 .tab-content{display:none;flex:1;overflow-y:auto;padding:14px 12px}
-.tab-content.active{display:block}
+.tab-content.active{display:block;overflow-y:auto;flex:1;min-height:0}
 .tab-content::-webkit-scrollbar{width:3px}
 .tab-content::-webkit-scrollbar-track{background:transparent}
 .tab-content::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
@@ -466,18 +467,6 @@ input:checked+.slider::before{transform:translateX(12px)}
         🔥ボタンでON/OFF。青→黄→赤が高密度エリア。右下の📍でポイント表示を切替。
       </p>
       <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px">
-        <div class="sec-head">取材・お問い合わせ</div>
-        <p style="font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:10px">
-          <strong style="color:var(--text)">更新頻度：</strong>札幌市の公式発表に合わせて随時更新<br>
-          <strong style="color:var(--text)">データ期間：</strong>2025〜2026年シーズン<br>
-          <strong style="color:var(--text)">取材・掲載のお問い合わせ：</strong><br>
-          <a href="https://totonoesekkeishitsu.com/pages/profile.html"
-             style="color:var(--accent2);text-decoration:none"
-             target="_blank">作者プロフィールページ →</a>
-        </p>
-      </div>
-
-      <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px">
         <p style="font-size:11px;color:var(--muted);line-height:1.6">
           ©2026 Totonoe Studio<br>
           データ：札幌市公式出没情報
@@ -568,7 +557,7 @@ function buildFilterChips(){
     const el=document.createElement('div');
     el.className='chip on';
     el.dataset.ward=w;
-    el.textContent=w;
+    el.textContent=wardLabel(w);
     el.onclick=()=>toggleChip(el,'ward');
     wc.appendChild(el);
     activeWards.add(w);
@@ -882,6 +871,22 @@ const I18N = {
   }
 };
 
+// 区の日英変換テーブル
+const WARD_EN = {
+  '中央区': 'Chuo',
+  '北区':   'Kita',
+  '東区':   'Higashi',
+  '白石区': 'Shiroishi',
+  '厚別区': 'Atsubetsu',
+  '豊平区': 'Toyohira',
+  '清田区': 'Kiyota',
+  '南区':   'Minami',
+  '西区':   'Nishi',
+  '手稲区': 'Teine',
+};
+
+function wardLabel(w){ return currentLang === 'en' ? (WARD_EN[w] || w) : w; }
+
 function t(key){ return I18N[currentLang][key] || I18N['ja'][key] || key; }
 
 function setLang(l){
@@ -889,6 +894,10 @@ function setLang(l){
   document.getElementById('lang-ja').classList.toggle('active', l==='ja');
   document.getElementById('lang-en').classList.toggle('active', l==='en');
   applyI18N();
+  // 区チップのラベルを言語に合わせて更新
+  document.querySelectorAll('#chips-ward .chip').forEach(el=>{
+    el.textContent = wardLabel(el.dataset.ward);
+  });
   // フィルターチップ・統計・一覧も再描画（月名など）
   renderStats();
   renderList();
