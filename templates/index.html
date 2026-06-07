@@ -4,6 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>札幌ヒグマ出没マップ 2025–26</title>
+
+<!-- SEO / OGP設定 -->
+<meta name="description" content="札幌市公開データをもとに、ヒグマ出没地点を地図上に可視化。区・時間帯・月別にフィルタリングできます。個人開発・無料公開。">
+<meta name="keywords" content="札幌,ヒグマ,熊,出没,マップ,地図,北海道,データ可視化,オープンデータ">
+<meta name="author" content="Totonoe Studio">
+
+<!-- OGP（SNSシェア用） -->
+<meta property="og:title" content="札幌ヒグマ出没マップ 2025–26">
+<meta property="og:description" content="札幌市公開データをもとに、ヒグマ出没地点を地図上に可視化。区・時間帯・月別にフィルタリングできます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bear-map.onrender.com/">
+<meta property="og:image" content="https://bear-map.onrender.com/static/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="札幌ヒグマ出没マップ">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="札幌ヒグマ出没マップ 2025–26">
+<meta name="twitter:description" content="札幌市公開データをもとに、ヒグマ出没地点を地図上に可視化。区・時間帯・月別にフィルタリングできます。">
+<meta name="twitter:image" content="https://bear-map.onrender.com/static/ogp.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -445,6 +465,18 @@ input:checked+.slider::before{transform:translateX(12px)}
       <p style="font-size:12px;color:var(--muted);line-height:1.7">
         🔥ボタンでON/OFF。青→黄→赤が高密度エリア。右下の📍でポイント表示を切替。
       </p>
+      <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px">
+        <div class="sec-head">取材・お問い合わせ</div>
+        <p style="font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:10px">
+          <strong style="color:var(--text)">更新頻度：</strong>札幌市の公式発表に合わせて随時更新<br>
+          <strong style="color:var(--text)">データ期間：</strong>2025〜2026年シーズン<br>
+          <strong style="color:var(--text)">取材・掲載のお問い合わせ：</strong><br>
+          <a href="https://totonoesekkeishitsu.com/pages/profile.html"
+             style="color:var(--accent2);text-decoration:none"
+             target="_blank">作者プロフィールページ →</a>
+        </p>
+      </div>
+
       <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px">
         <p style="font-size:11px;color:var(--muted);line-height:1.6">
           ©2026 Totonoe Studio<br>
