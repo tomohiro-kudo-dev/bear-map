@@ -36,6 +36,8 @@ def load_points() -> list[dict]:
         lng = pd.to_numeric(row["経度"], errors="coerce")
         if pd.isna(lat) or pd.isna(lng):
             continue
+        if 42.0 <= lat < 42.8 and 141.0 <= lng <= 141.6:
+            lat += 1.0
 
         status = "" if pd.isna(row["状況"]) else str(row["状況"])
         points.append(
