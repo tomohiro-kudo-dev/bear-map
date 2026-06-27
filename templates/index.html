@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ja">
 <head>
@@ -98,7 +99,31 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      gap: 8px;
       flex: 0 0 auto;
+    }
+
+    .profile-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: rgba(255,255,255,.045);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .16s ease;
+    }
+
+    .profile-link:hover {
+      border-color: var(--line-strong);
+      background: rgba(255, 122, 69, .14);
+      transform: translateY(-1px);
     }
 
     .language-toggle {
@@ -494,6 +519,8 @@
       .subtitle { font-size: 11px; }
       .brand-mark { width: 38px; height: 38px; }
       .quick-stats { grid-template-columns: repeat(2, 1fr); }
+      .top-actions { gap: 6px; }
+      .profile-link { min-height: 36px; padding: 0 10px; font-size: 11px; }
       .lang-btn { min-width: 38px; }
       .app { grid-template-rows: auto 48dvh auto; }
       .map-wrap { min-height: 48dvh; }
@@ -530,7 +557,8 @@
         <div class="stat-pill"><span class="stat-value" id="hot-ward">-</span><span class="stat-label" id="label-hot">最多エリア</span></div>
         <div class="stat-pill"><span class="stat-value" id="latest-date">-</span><span class="stat-label" id="label-latest">最新日</span></div>
       </div>
-      <div class="top-actions" aria-label="言語切替">
+      <div class="top-actions" aria-label="関連リンクと言語切替">
+        <a class="profile-link" href="https://totonoesekkeishitsu.com/pages/profile.html" target="_blank" rel="noopener noreferrer">プロフィール</a>
         <div class="language-toggle">
           <button class="lang-btn active" id="lang-ja" type="button" data-lang="ja">JP</button>
           <button class="lang-btn" id="lang-en" type="button" data-lang="en">EN</button>
